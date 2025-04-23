@@ -1,0 +1,331 @@
+{
+  "$defs": {
+    "AnthropicSettings": {
+      "additionalProperties": true,
+      "description": "Settings for using Anthropic models in the MCP Agent application.",
+      "properties": {
+        "api_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Api Key"
+        }
+      },
+      "title": "AnthropicSettings",
+      "type": "object"
+    },
+    "AzureSettings": {
+      "additionalProperties": true,
+      "description": "Settings for using Azure models in the MCP Agent application.",
+      "properties": {
+        "api_key": {
+          "title": "Api Key",
+          "type": "string"
+        },
+        "endpoint": {
+          "title": "Endpoint",
+          "type": "string"
+        }
+      },
+      "required": [
+        "api_key",
+        "endpoint"
+      ],
+      "title": "AzureSettings",
+      "type": "object"
+    },
+    "BedrockSettings": {
+      "additionalProperties": true,
+      "description": "Settings for using Bedrock models in the MCP Agent application.",
+      "properties": {
+        "aws_access_key_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aws Access Key Id"
+        },
+        "aws_secret_access_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aws Secret Access Key"
+        },
+        "aws_session_token": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aws Session Token"
+        },
+        "aws_region": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aws Region"
+        },
+        "profile": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Profile"
+        }
+      },
+      "title": "BedrockSettings",
+      "type": "object"
+    },
+    "CohereSettings": {
+      "additionalProperties": true,
+      "description": "Settings for using Cohere models in the MCP Agent application.",
+      "properties": {
+        "api_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Api Key"
+        }
+      },
+      "title": "CohereSettings",
+      "type": "object"
+    },
+    "GoogleSettings": {
+      "additionalProperties": true,
+      "description": "Settings for using Google models in the MCP Agent application.",
+      "properties": {
+        "api_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Api Key",
+          "description": "Or use the GOOGLE_API_KEY environment variable"
+        },
+        "vertexai": {
+          "default": false,
+          "title": "Vertexai",
+          "type": "boolean"
+        },
+        "project": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Project"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Location"
+        }
+      },
+      "title": "GoogleSettings",
+      "type": "object"
+    },
+    "LogPathSettings": {
+      "description": "Settings for configuring log file paths with dynamic elements like timestamps or session IDs.",
+      "properties": {
+        "path_pattern": {
+          "default": "logs/mcp-agent-{unique_id}.jsonl",
+          "title": "Path Pattern",
+          "type": "string"
+        },
+        "unique_id": {
+          "default": "timestamp",
+          "enum": [
+            "timestamp",
+            "session_id"
+          ],
+          "title": "Unique Id",
+          "type": "string"
+        },
+        "timestamp_format": {
+          "default": "%Y%m%d_%H%M%S",
+          "title": "Timestamp Format",
+          "type": "string"
+        }
+      },
+      "title": "LogPathSettings",
+      "type": "object"
+    },
+    "LoggerSettings": {
+      "description": "Logger settings for the MCP Agent application.",
+      "properties": {
+        "type": {
+          "default": "console",
+          "enum": [
+            "none",
+            "console",
+            "file",
+            "http"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "transports": {
+          "default": [],
+          "items": {
+            "enum": [
+              "none",
+              "console",
+              "file",
+              "http"
+            ],
+            "type": "string"
+          },
+          "title": "Transports",
+          "type": "array",
+          "description": "List of transports to use (can enable multiple simultaneously)"
+        },
+        "level": {
+          "default": "info",
+          "enum": [
+            "debug",
+            "info",
+            "warning",
+            "error"
+          ],
+          "title": "Level",
+          "type": "string",
+          "description": "Minimum logging level"
+        },
+        "progress_display": {
+          "default": false,
+          "title": "Progress Display",
+          "type": "boolean"
+        }
+      },
+      "title": "LoggerSettings",
+      "type": "object"
+    }
+  },
+  "description": "Configuration schema for the MCP Agent application.",
+  "properties": {
+    "$schema": {
+      "title": "Schema",
+      "type": "string"
+    },
+    "execution_engine": {
+      "default": "asyncio",
+      "enum": [
+        "asyncio",
+        "threading"
+      ],
+      "title": "Execution Engine",
+      "type": "string"
+    },
+    "logger": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/LoggerSettings"
+        }
+      ],
+      "title": "Logger"
+    },
+    "mcp": {
+      "properties": {
+        "servers": {
+          "additionalProperties": {
+            "properties": {
+              "transport": {
+                "enum": [
+                  "sse",
+                  "http"
+                ],
+                "title": "Transport",
+                "type": "string"
+              },
+              "url": {
+                "title": "Url",
+                "type": "string"
+              }
+            },
+            "required": [
+              "transport",
+              "url"
+            ],
+            "type": "object"
+          },
+          "title": "Servers",
+          "type": "object"
+        }
+      },
+      "required": [
+        "servers"
+      ],
+      "title": "Mcp",
+      "type": "object"
+    },
+    "openai": {
+      "properties": {
+        "default_model": {
+          "title": "Default Model",
+          "type": "string"
+        }
+      },
+      "title": "Openai",
+      "type": "object"
+    }
+  },
+  "required": [
+    "mcp"
+  ],
+  "title": "MCP Agent Config",
+  "type": "object"
+} 

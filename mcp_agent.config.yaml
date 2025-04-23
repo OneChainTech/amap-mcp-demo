@@ -1,0 +1,16 @@
+$schema: ./schema/mcp-agent.config.schema.json
+
+execution_engine: asyncio
+logger:
+  type: file
+  level: debug
+
+mcp:
+  servers:
+    amap-maps:
+      transport: sse
+      url: https://mcp-e7501f2d-826a-4be5.api-inference.modelscope.cn/sse
+
+openai:
+  # Secrets (API keys, etc.) are stored in an mcp_agent.secrets.yaml file which can be gitignored
+  default_model: deepseek-chat 
