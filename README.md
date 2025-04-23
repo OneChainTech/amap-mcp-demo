@@ -12,22 +12,5 @@
 
 ## 快速开始
 
-1. 安装依赖：
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. 配置环境变量：
-   ```bash
-   cp .env.example .env
-   ```
-   编辑 `.env` 文件，填入高德地图 API 密钥 (`AMAP_API_KEY`)
-
-3. 运行应用：
-   ```bash
-   streamlit run streamlit_app.py
-   ```
-
-## 系统要求
-
-- Python 3.8 或更高版本 
+uv pip install -r requirements.txt
+uv run streamlit run streamlit_app.py
