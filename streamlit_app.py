@@ -133,7 +133,7 @@ async def main():
         st.session_state.messages = [
             {"role": "assistant", "content": "你好！我是高德地图智能助手，我可以帮你：\n1. 查询地点信息\n2. 获取天气信息\n3. 规划出行路线\n4. 测量距离\n5. 搜索周边设施\n\n请问有什么可以帮你的吗？"}
         ]
-        st.experimental_rerun()
+        st.rerun()
 
 if __name__ == "__main__":
     app = MCPApp(name="amap-streamlit-app")
