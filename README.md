@@ -12,5 +12,8 @@
 
 ## 快速开始
 
-uv pip install -r requirements.txt
-uv run streamlit run streamlit_app.py
+```bash
+uv venv
+source .venv/bin/activate && uv pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
